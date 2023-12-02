@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashtime = 0.2f;
     [SerializeField] private float dashcooldown = 1f;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
 
     void Start()
     {
@@ -126,6 +127,8 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                AudioManager.instance.PlaySFX("Jump");
+               // jumpSoundEffect.Play();//bisa
                 rb.velocity = new Vector2(rb.velocity.x, JumpHeight);
                 Anim.SetBool("isJumping", true);
 
@@ -137,6 +140,8 @@ public class Player : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space) && WallJumpTimer > 0f)
         {
+            AudioManager.instance.PlaySFX("Jump");
+           // jumpSoundEffect.Play();//bisa
             isWallJumping = true;
             rb.velocity = new Vector2(WallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             WallJumpTimer = 0;

@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Sprite fullHealth;
     [SerializeField] private Sprite emptyHealth;
     [SerializeField] private Image[] HeartContainer;
-
+    [SerializeField] private AudioSource deathSoundEffect;
     //player dead
     [HideInInspector] public bool playerisDead;
 
@@ -60,6 +60,8 @@ public class Health : MonoBehaviour
 
     public void GameOver()
     {
+        AudioManager.instance.PlaySFX("Death");
+       // deathSoundEffect.Play();//bisa
         playerisDead = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

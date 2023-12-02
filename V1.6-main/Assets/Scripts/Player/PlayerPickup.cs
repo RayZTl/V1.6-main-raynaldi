@@ -6,6 +6,7 @@ public class PlayerPickup : MonoBehaviour
 {
     private bool Healed;
     public Health healthScript;
+    [SerializeField] private AudioSource collectionSoundEffect;
     void Start()
     {
         healthScript = GetComponent<Health>();
@@ -38,6 +39,8 @@ public class PlayerPickup : MonoBehaviour
         {
             if (other.CompareTag("Heal"))
             {
+                AudioManager.instance.PlaySFX("Collect");
+               // collectionSoundEffect.Play();//bisa
                 Destroy(other.gameObject);
                 Debug.Log("player Healed");
             }
